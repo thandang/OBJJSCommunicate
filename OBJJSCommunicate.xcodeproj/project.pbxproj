@@ -19,6 +19,11 @@
 		36A5B4B91B108DC30036E1CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36A5B4B81B108DC30036E1CF /* Foundation.framework */; };
 		36A5B4BB1B108DC80036E1CF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36A5B4BA1B108DC80036E1CF /* CoreGraphics.framework */; };
 		36C9086F1B1219C3004B9FEA /* AOWebViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C9086E1B1219C3004B9FEA /* AOWebViewDelegate.m */; };
+		757151F41B12FF3500541BDB /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 757151F31B12FF3500541BDB /* SSZipArchive.m */; };
+		757151FF1B13000D00541BDB /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 757151F71B13000D00541BDB /* ioapi.c */; };
+		757152001B13000D00541BDB /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 757151F91B13000D00541BDB /* mztools.c */; };
+		757152011B13000D00541BDB /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 757151FB1B13000D00541BDB /* unzip.c */; };
+		757152021B13000D00541BDB /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 757151FD1B13000D00541BDB /* zip.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +57,17 @@
 		36A5B4BA1B108DC80036E1CF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		36C9086D1B1219C3004B9FEA /* AOWebViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AOWebViewDelegate.h; path = WebViews/AOWebViewDelegate.h; sourceTree = "<group>"; };
 		36C9086E1B1219C3004B9FEA /* AOWebViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AOWebViewDelegate.m; path = WebViews/AOWebViewDelegate.m; sourceTree = "<group>"; };
+		757151F21B12FF3500541BDB /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSZipArchive.h; path = SSZipArchive/SSZipArchive.h; sourceTree = "<group>"; };
+		757151F31B12FF3500541BDB /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSZipArchive.m; path = SSZipArchive/SSZipArchive.m; sourceTree = "<group>"; };
+		757151F61B13000D00541BDB /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = crypt.h; path = SSZipArchive/minizip/crypt.h; sourceTree = "<group>"; };
+		757151F71B13000D00541BDB /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ioapi.c; path = SSZipArchive/minizip/ioapi.c; sourceTree = "<group>"; };
+		757151F81B13000D00541BDB /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ioapi.h; path = SSZipArchive/minizip/ioapi.h; sourceTree = "<group>"; };
+		757151F91B13000D00541BDB /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = mztools.c; path = SSZipArchive/minizip/mztools.c; sourceTree = "<group>"; };
+		757151FA1B13000D00541BDB /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = mztools.h; path = SSZipArchive/minizip/mztools.h; sourceTree = "<group>"; };
+		757151FB1B13000D00541BDB /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = unzip.c; path = SSZipArchive/minizip/unzip.c; sourceTree = "<group>"; };
+		757151FC1B13000D00541BDB /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = unzip.h; path = SSZipArchive/minizip/unzip.h; sourceTree = "<group>"; };
+		757151FD1B13000D00541BDB /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = zip.c; path = SSZipArchive/minizip/zip.c; sourceTree = "<group>"; };
+		757151FE1B13000D00541BDB /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zip.h; path = SSZipArchive/minizip/zip.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +116,7 @@
 		36A5B4801B1017160036E1CF /* OBJJSCommunicate */ = {
 			isa = PBXGroup;
 			children = (
+				7591CD681B12F88C00FA2CC1 /* SSZipArchive */,
 				36A5B4B11B108D8E0036E1CF /* WebViews */,
 				36A5B4851B1017160036E1CF /* AppDelegate.h */,
 				36A5B4861B1017160036E1CF /* AppDelegate.m */,
@@ -147,6 +164,32 @@
 				36C9086E1B1219C3004B9FEA /* AOWebViewDelegate.m */,
 			);
 			name = WebViews;
+			sourceTree = "<group>";
+		};
+		757151F51B12FFFE00541BDB /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				757151F61B13000D00541BDB /* crypt.h */,
+				757151F71B13000D00541BDB /* ioapi.c */,
+				757151F81B13000D00541BDB /* ioapi.h */,
+				757151F91B13000D00541BDB /* mztools.c */,
+				757151FA1B13000D00541BDB /* mztools.h */,
+				757151FB1B13000D00541BDB /* unzip.c */,
+				757151FC1B13000D00541BDB /* unzip.h */,
+				757151FD1B13000D00541BDB /* zip.c */,
+				757151FE1B13000D00541BDB /* zip.h */,
+			);
+			name = minizip;
+			sourceTree = "<group>";
+		};
+		7591CD681B12F88C00FA2CC1 /* SSZipArchive */ = {
+			isa = PBXGroup;
+			children = (
+				757151F51B12FFFE00541BDB /* minizip */,
+				757151F21B12FF3500541BDB /* SSZipArchive.h */,
+				757151F31B12FF3500541BDB /* SSZipArchive.m */,
+			);
+			name = SSZipArchive;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,9 +293,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				757151FF1B13000D00541BDB /* ioapi.c in Sources */,
 				36A5B48A1B1017160036E1CF /* ViewController.m in Sources */,
+				757151F41B12FF3500541BDB /* SSZipArchive.m in Sources */,
+				757152021B13000D00541BDB /* zip.c in Sources */,
 				36C9086F1B1219C3004B9FEA /* AOWebViewDelegate.m in Sources */,
+				757152001B13000D00541BDB /* mztools.c in Sources */,
 				36A5B4871B1017160036E1CF /* AppDelegate.m in Sources */,
+				757152011B13000D00541BDB /* unzip.c in Sources */,
 				36A5B4841B1017160036E1CF /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
