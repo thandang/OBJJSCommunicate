@@ -11,10 +11,14 @@
 #import "WebViewInterface.h"
 
 @interface ViewController () <WebViewInterface> {
-    
     __weak IBOutlet UIWebView *myWebView;
-    
     __weak IBOutlet UITextField *txtInput;
+    
+    __weak IBOutlet UILabel *lblName;
+    
+    __weak IBOutlet UITextField *txtFirstname;
+    
+    __weak IBOutlet UITextField *txtLastname;
     
 }
 
@@ -29,9 +33,7 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.webViewDelegate = [[AOWebViewDelegate alloc] initWithWebView:myWebView withWebViewInterface:self];
     myWebView.scrollView.scrollEnabled = NO;
-    
     [self.webViewDelegate loadPage:@"index.html" fromFolder:@"wwwroot"];
-//    [myWebView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"index" ofType:@"html" inDirectory:@"wwwroot"] isDirectory:NO]]];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,16 +44,21 @@
 
 #pragma mark - Custom Delegate
 - (id) processFunctionFromJS:(NSString *) name withArgs:(NSArray*) args error:(NSError **) error {
-//    if ([name compare:@"loadList" options:NSCaseInsensitiveSearch] == NSOrderedSame)
-//    {
-//        NSArray *listElements = @[@"Item 1", @"Item 2"];
-//        
-//        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:listElements options:0 error:nil];
-//        
-//        NSString *result = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-//        
-//        return result;
-//    }
+    if ([name compare:@"loadList" options:NSCaseInsensitiveSearch] == NSOrderedSame) {
+        NSArray *listElements = @[@"Item 1", @"Item 2"];
+        
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:listElements options:0 error:nil];
+        
+        NSString *result = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        
+        return result;
+    } else if ([name compare:@"updateLabel" options:NSCaseInsensitiveSearch] == NSOrderedSame) {
+        //Return callback
+        NSArray *listName = @[txtFirstname.text, txtLastname.text];
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:listName options:0 error:nil];
+        NSString *result = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        return result;
+    }
     
     return nil;
 }
@@ -63,6 +70,11 @@
     [self.webViewDelegate callJSFunction:@"addToList" args:dict];
 }
 
+
+- (IBAction)callNativeFunction:(id)sender {
+    NSDictionary *dict = [NSDictionary dictionary];
+    [self.webViewDelegate callJSFunction:@"showValueInNative" args:dict];
+}
 
 
 @end

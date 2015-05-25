@@ -8,7 +8,7 @@
 
 #import "AOWebViewDelegate.h"
 
-#define kPrefix @"js2ios"
+#define kPrefix @"js2ios://"
 #define kFunctionName   @"functionname"
 #define kSuccess    @"success"
 #define kError      @"error"
