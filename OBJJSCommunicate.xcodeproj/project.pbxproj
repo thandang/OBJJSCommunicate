@@ -14,6 +14,11 @@
 		36A5B48F1B1017160036E1CF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36A5B48E1B1017160036E1CF /* Images.xcassets */; };
 		36A5B4921B1017160036E1CF /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36A5B4901B1017160036E1CF /* LaunchScreen.xib */; };
 		36A5B49E1B1017160036E1CF /* OBJJSCommunicateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A5B49D1B1017160036E1CF /* OBJJSCommunicateTests.m */; };
+		36A5B4AE1B108B600036E1CF /* wwwroot in Resources */ = {isa = PBXBuildFile; fileRef = 36A5B4AD1B108B600036E1CF /* wwwroot */; };
+		36A5B4B71B108DBB0036E1CF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36A5B4B61B108DBB0036E1CF /* UIKit.framework */; };
+		36A5B4B91B108DC30036E1CF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36A5B4B81B108DC30036E1CF /* Foundation.framework */; };
+		36A5B4BB1B108DC80036E1CF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36A5B4BA1B108DC80036E1CF /* CoreGraphics.framework */; };
+		36C9086F1B1219C3004B9FEA /* AOWebViewDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 36C9086E1B1219C3004B9FEA /* AOWebViewDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +45,13 @@
 		36A5B4971B1017160036E1CF /* OBJJSCommunicateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OBJJSCommunicateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		36A5B49C1B1017160036E1CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		36A5B49D1B1017160036E1CF /* OBJJSCommunicateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OBJJSCommunicateTests.m; sourceTree = "<group>"; };
+		36A5B4AD1B108B600036E1CF /* wwwroot */ = {isa = PBXFileReference; lastKnownFileType = folder; path = wwwroot; sourceTree = "<group>"; };
+		36A5B4B41B108D970036E1CF /* WebViewInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebViewInterface.h; path = WebViews/WebViewInterface.h; sourceTree = "<group>"; };
+		36A5B4B61B108DBB0036E1CF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		36A5B4B81B108DC30036E1CF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		36A5B4BA1B108DC80036E1CF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		36C9086D1B1219C3004B9FEA /* AOWebViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AOWebViewDelegate.h; path = WebViews/AOWebViewDelegate.h; sourceTree = "<group>"; };
+		36C9086E1B1219C3004B9FEA /* AOWebViewDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AOWebViewDelegate.m; path = WebViews/AOWebViewDelegate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +59,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36A5B4BB1B108DC80036E1CF /* CoreGraphics.framework in Frameworks */,
+				36A5B4B91B108DC30036E1CF /* Foundation.framework in Frameworks */,
+				36A5B4B71B108DBB0036E1CF /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +78,10 @@
 		36A5B4751B1017160036E1CF = {
 			isa = PBXGroup;
 			children = (
+				36A5B4BA1B108DC80036E1CF /* CoreGraphics.framework */,
+				36A5B4B81B108DC30036E1CF /* Foundation.framework */,
+				36A5B4B61B108DBB0036E1CF /* UIKit.framework */,
+				36A5B4AD1B108B600036E1CF /* wwwroot */,
 				36A5B4801B1017160036E1CF /* OBJJSCommunicate */,
 				36A5B49A1B1017160036E1CF /* OBJJSCommunicateTests */,
 				36A5B47F1B1017160036E1CF /* Products */,
@@ -81,6 +100,7 @@
 		36A5B4801B1017160036E1CF /* OBJJSCommunicate */ = {
 			isa = PBXGroup;
 			children = (
+				36A5B4B11B108D8E0036E1CF /* WebViews */,
 				36A5B4851B1017160036E1CF /* AppDelegate.h */,
 				36A5B4861B1017160036E1CF /* AppDelegate.m */,
 				36A5B4881B1017160036E1CF /* ViewController.h */,
@@ -117,6 +137,16 @@
 				36A5B49C1B1017160036E1CF /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		36A5B4B11B108D8E0036E1CF /* WebViews */ = {
+			isa = PBXGroup;
+			children = (
+				36A5B4B41B108D970036E1CF /* WebViewInterface.h */,
+				36C9086D1B1219C3004B9FEA /* AOWebViewDelegate.h */,
+				36C9086E1B1219C3004B9FEA /* AOWebViewDelegate.m */,
+			);
+			name = WebViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +229,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36A5B4AE1B108B600036E1CF /* wwwroot in Resources */,
 				36A5B48D1B1017160036E1CF /* Main.storyboard in Resources */,
 				36A5B4921B1017160036E1CF /* LaunchScreen.xib in Resources */,
 				36A5B48F1B1017160036E1CF /* Images.xcassets in Resources */,
@@ -220,6 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36A5B48A1B1017160036E1CF /* ViewController.m in Sources */,
+				36C9086F1B1219C3004B9FEA /* AOWebViewDelegate.m in Sources */,
 				36A5B4871B1017160036E1CF /* AppDelegate.m in Sources */,
 				36A5B4841B1017160036E1CF /* main.m in Sources */,
 			);
@@ -418,6 +450,7 @@
 				36A5B4A31B1017160036E1CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		36A5B4A41B1017160036E1CF /* Build configuration list for PBXNativeTarget "OBJJSCommunicateTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +459,7 @@
 				36A5B4A61B1017160036E1CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
