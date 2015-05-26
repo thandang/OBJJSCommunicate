@@ -32,6 +32,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.webViewDelegate = [[AOWebViewDelegate alloc] initWithWebView:myWebView withWebViewInterface:self];
+    myWebView.scrollView.scrollEnabled = NO;
+    [self.webViewDelegate loadPage:@"index.html" fromFolder:@"wwwroot"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -89,9 +92,6 @@
 }
 
 - (void) zipArchiveDidUnzipArchiveAtPath:(NSString *)path zipInfo:(unz_global_info)zipInfo unzippedPath:(NSString *)unzippedPath {
-    self.webViewDelegate = [[AOWebViewDelegate alloc] initWithWebView:myWebView withWebViewInterface:self];
-    myWebView.scrollView.scrollEnabled = NO;
-//    [self.webViewDelegate loadPage:@"index.html" fromFolder:@"wwwroot"];
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if ([fileManager fileExistsAtPath:unzippedPath]) {
         NSError *error = nil;
