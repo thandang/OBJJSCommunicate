@@ -17,6 +17,7 @@
 
 - (id) initWithWebView:(UIWebView *)webView withWebViewInterface:(id<WebViewInterface>)webViewInterface;
 - (void) loadPage:(NSString *)pageName fromFolder:(NSString *)folderName;
+- (void) loadPageWithPath:(NSString *)path;
 - (void) createError:(NSError **)error withErrorCode:(int)code andMessage:(NSString *)message;
 - (void) callJSFunction:(NSString *)functionName args:(NSDictionary *)args;
 

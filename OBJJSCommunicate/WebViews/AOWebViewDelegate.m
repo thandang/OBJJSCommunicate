@@ -59,6 +59,16 @@
     }
 }
 
+- (void) loadPageWithPath:(NSString *)path {
+    if (path && path.length) {
+        NSURL *url = [NSURL fileURLWithPath:path];
+        if (url) {
+            NSURLRequest *request = [NSURLRequest requestWithURL:url];
+            [self.webView loadRequest:request];
+        }
+    }
+}
+
 - (void) callJSFunction:(NSString *)functionName args:(NSDictionary *)args {
     NSError *jsonError;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:args options:0 error:&jsonError];
@@ -92,15 +102,15 @@
     } else {
         NSLog(@"%@", message);
     }
-    
+
 }
 
 - (void) createError:(NSError**) error withMessage:(NSString *) msg {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     [dict setValue:msg forKey:NSLocalizedDescriptionKey];
-    
+
     *error = [NSError errorWithDomain:@"JSiOSBridgeError" code:-1 userInfo:dict];
-    
+
 }
 
 - (BOOL) processURL:(NSString *)url {
@@ -125,25 +135,25 @@
 
 - (void) callFunction:(NSString *) name withArgs:(NSArray *) args onSuccess:(NSString *) successCallback onError:(NSString *) errorCallback {
     NSError *error;
-    
+
     id retVal = [self.webInterface processFunctionFromJS:name withArgs:args error:&error];
-    
+
     if (error != nil)
     {
         NSString *resultStr = [NSString stringWithString:error.localizedDescription];
         [self callJSErrorCallback:errorCallback withMessage:resultStr];
         return;
     }
-    
+
     [self callJSSuccessCallback:successCallback withRetValue:retVal forFunction:name];
-    
+
 }
 
 #pragma mark - UIWebView Delegate
 - (BOOL) webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
     NSURL *url = [request URL];
     NSString *urlStr = url.absoluteString;
-    
+
     return [self processURL:urlStr];
 }
 

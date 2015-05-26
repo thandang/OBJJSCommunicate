@@ -11,7 +11,7 @@
 #import "WebViewInterface.h"
 #import "SSZipArchive.h"
 
-@interface ViewController () <WebViewInterface> {
+@interface ViewController () <WebViewInterface, SSZipArchiveDelegate> {
     __weak IBOutlet UIWebView *myWebView;
     __weak IBOutlet UITextField *txtInput;
 
@@ -32,9 +32,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    self.webViewDelegate = [[AOWebViewDelegate alloc] initWithWebView:myWebView withWebViewInterface:self];
-    myWebView.scrollView.scrollEnabled = NO;
-    [self.webViewDelegate loadPage:@"index.html" fromFolder:@"wwwroot"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -78,9 +75,74 @@
 }
 
 - (IBAction)unzip:(id)sender {
-    NSString *zipPath = @"path_to_your_zip_file";
-    NSString *destinationPath = @"path_to_the_folder_where_you_want_it_unzipped";
-    [SSZipArchive unzipFileAtPath:zipPath toDestination:destinationPath];
+    NSString *zipPath = [[NSBundle bundleForClass:[self class]] pathForResource:@"wwwroot" ofType:@"zip"];
+
+    NSString *outputPath = [self _cachesPath:nil];
+
+    [SSZipArchive unzipFileAtPath:zipPath toDestination:outputPath delegate:self];
+}
+
+
+#pragma mark - Unzip Delegate
+- (void) zipArchiveDidUnzipArchiveFile:(NSString *)zipFile entryPath:(NSString *)entryPath destPath:(NSString *)destPath {
+
+}
+
+- (void) zipArchiveDidUnzipArchiveAtPath:(NSString *)path zipInfo:(unz_global_info)zipInfo unzippedPath:(NSString *)unzippedPath {
+    self.webViewDelegate = [[AOWebViewDelegate alloc] initWithWebView:myWebView withWebViewInterface:self];
+    myWebView.scrollView.scrollEnabled = NO;
+//    [self.webViewDelegate loadPage:@"index.html" fromFolder:@"wwwroot"];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:unzippedPath]) {
+        NSError *error = nil;
+        NSArray *itemRootObject = [fileManager contentsOfDirectoryAtPath:unzippedPath error:&error];
+        NSString *root;
+        for (NSInteger l = 0; l < itemRootObject.count; l++) {
+            NSString *rootName = itemRootObject[l];
+            if ([rootName rangeOfString:@"wwwroot"].location != NSNotFound) {
+                root = rootName;
+                break;
+            }
+        }
+        NSString *desPath = nil;
+        if (root) {
+            desPath = [unzippedPath stringByAppendingString:[NSString stringWithFormat:@"/%@", root]];
+        } else {
+            desPath = unzippedPath;
+        }
+        NSArray *items = items = [fileManager contentsOfDirectoryAtPath:desPath error:&error];
+
+        NSString *path = @"";
+        if (!error) {
+            for (NSInteger i = 0; i < items.count; i++) {
+                NSString *item = items[i];
+                if ([item rangeOfString:@"index.html"].location != NSNotFound) {
+                    path = [desPath stringByAppendingFormat:@"/%@",item];
+                    break;
+                }
+            }
+        } else {
+            NSLog(@"error: %@", error);
+        }
+        [self.webViewDelegate loadPageWithPath:path];
+    }
+}
+
+#pragma mark - Private
+- (NSString *)_cachesPath:(NSString *)directory {
+    NSString *path = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject]
+                      stringByAppendingPathComponent:@"com.apide.test"];
+    if (directory) {
+        path = [path stringByAppendingPathComponent:directory];
+        NSLog(@"Path: %@", path);
+    }
+
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if (![fileManager fileExistsAtPath:path]) {
+        [fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+
+    return path;
 }
 
 
