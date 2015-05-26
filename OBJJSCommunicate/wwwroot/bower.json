@@ -1,0 +1,24 @@
+{
+  "name": "iqos",
+  "version": "1.0.0",
+  "authors": [
+    "Thomas Bindzus <bindzus@gmail.com>"
+  ],
+  "description": "This is a test project for iQOS",
+  "main": "index.html",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angularjs": "~1.3.15",
+    "angular-ui-router": "~0.2.15"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "OBJJSCommunicate",
+  "version": "1.0.0",
+  "description": "Install npm",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "Than Dang",
+  "license": "MIT",
+  "devDependencies": {
+    "bower": "^1.4.1"
+  },
+  "dependencies": {
+    "jquery": "^2.1.4"
+  }
+}
